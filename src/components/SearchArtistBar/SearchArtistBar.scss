@@ -1,0 +1,21 @@
+.searchInput {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #53348a;
+  width: 100%;
+  font-size: 32px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  text-align: center;
+  background: white;
+}
+
+.searchInput:focus {
+  border-bottom: 2px solid #93519a;
+}
+
+.searchBar {
+  margin: 0 auto;
+  width: 80%;
+}

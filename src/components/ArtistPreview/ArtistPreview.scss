@@ -1,0 +1,42 @@
+.artist {
+  margin-bottom: 24px;
+  height: 300px;
+}
+
+.img {
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+  z-index: 10;
+  display: none;
+}
+
+.img:hover > .details {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: block;
+}
+
+.details ul {
+  list-style: none outside;
+  position: relative;
+  top: 40%;
+  margin: auto;
+  padding: 0;
+  font-size: 18px;
+}
+
+.artist:firts-child {
+  margin-top: 24px;
+}

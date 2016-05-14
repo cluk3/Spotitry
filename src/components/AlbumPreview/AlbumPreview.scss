@@ -1,0 +1,13 @@
+.title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.img {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+  height: auto;
+  cursor: pointer;
+}
