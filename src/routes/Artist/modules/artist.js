@@ -1,3 +1,5 @@
+import { albumsFromRes } from 'helper'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -9,25 +11,24 @@ export const SET_ALBUMS = 'SET_ALBUMS'
 // Actions
 // ------------------------------------
 export function setArtist (artistRes, albumsRes) {
-  function uniq (a) {
-    var seen = {}
-    return a.filter((item) => {
-      return seen.hasOwnProperty(item.name) ? false : (seen[item.name] = true)
-    })
-  }
-
-  const albums = uniq(albumsRes.items)
+  const albums = albumsFromRes(albumsRes)
   if (!artistRes) {
     return {
       SET_ALBUMS,
       payload: albums
     }
   }
+  const selectImageUrl = (images) => {
+    const filteredImgs = images
+    .filter(image => image.width >= 200 && image.height >= 200)
+    return filteredImgs[filteredImgs.length - 1]
+  }
   const artist = {
     name: artistRes.name,
     followers: artistRes.followers.total,
     genres: artistRes.genres,
     images: artistRes.images,
+    imageUrl: selectImageUrl(artistRes.images),
     popularity: artistRes.popularity,
     id: artistRes.id,
     albums

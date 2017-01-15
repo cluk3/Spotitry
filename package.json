@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "3.0.0-alpha.0",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "Spotitry",
+  "version": "0.0.1",
+  "description": "An app which uses Spotify API to make practice with React, Redux, and React-Router!",
   "main": "index.js",
   "engines": {
     "node": ">=4.2.0",
@@ -81,9 +81,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/cluk3/Spotitry.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "author": "Luca Campli",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.11.0",

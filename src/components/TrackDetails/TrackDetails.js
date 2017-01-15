@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { formatSongDuration } from 'helper'
 
 export const TrackDetails = ({track, author}) => {
-  const duration = track.duration_ms / 1000
-  const min = Math.floor(parseInt(duration) / 60)
-  const seconds = parseInt(duration) % 60
   const feat = track.artists
   .filter(artist => artist.name !== author)
   .map((artist, i, arr) => {
     return (
-      <span>
+      <span key={i}>
         <strong>
           <Link to={'/artist/' + artist.id}>{artist.name}</Link>
         </strong>{arr.length - 1 === i ? '' : ' - '}
@@ -18,7 +16,7 @@ export const TrackDetails = ({track, author}) => {
   })
   return (
     <li>
-      {track.name} - {min}:{seconds.toString().length === 1 ? '0' + seconds : seconds}
+      {track.name} - {formatSongDuration(track.duration_ms)}
       {feat.length ? ' feat ' : ''}
       {feat}
     </li>

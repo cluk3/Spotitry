@@ -1,3 +1,5 @@
+import { artistsFromRes } from 'helper'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -13,18 +15,7 @@ export const FETCH_ARTISTS_FAIL = 'FETCH_ARTISTS_FAIL'
 // ------------------------------------
 export function loadArtists (artistsResponse) {
   const { next, total } = artistsResponse
-  const artists = artistsResponse.items
-    .sort((a, b) => b.followers.total - a.followers.total)
-    .map((artist) => {
-      return {
-        name: artist.name,
-        followers: artist.followers.total,
-        genres: artist.genres,
-        images: artist.images,
-        popularity: artist.popularity,
-        id: artist.id
-      }
-    })
+  const artists = artistsFromRes(artistsResponse)
   return {
     type: FETCH_ARTISTS_SUCCESS,
     payload: {
@@ -37,18 +28,7 @@ export function loadArtists (artistsResponse) {
 
 export function loadMoreArtists (artistsResponse) {
   const { next } = artistsResponse
-  const artists = artistsResponse.items
-    .sort((a, b) => b.followers.total - a.followers.total)
-    .map((artist) => {
-      return {
-        name: artist.name,
-        followers: artist.followers.total,
-        genres: artist.genres,
-        images: artist.images,
-        popularity: artist.popularity,
-        id: artist.id
-      }
-    })
+  const artists = artistsFromRes(artistsResponse)
   return {
     type: FETCH_MORE_ARTISTS_SUCCESS,
     payload: {

@@ -23,10 +23,9 @@ export class ArtistView extends React.Component {
         </div>
       </div>
     )
-    const loading = <Loading />
     return (
       <div>
-        {routeParams.artistId === artist.id ? artistView : loading}
+        {routeParams.artistId === artist.id ? artistView : <Loading />}
       </div>
     )
   }
@@ -35,7 +34,6 @@ export class ArtistView extends React.Component {
 ArtistView.propTypes = {
   artist: React.PropTypes.object.isRequired,
   routeParams: React.PropTypes.object.isRequired,
-  albums: React.PropTypes.array,
   goToAlbum: React.PropTypes.func.isRequired,
   loadArtist: React.PropTypes.func.isRequired
 }

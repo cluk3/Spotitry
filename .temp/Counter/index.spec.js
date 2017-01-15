@@ -14,5 +14,4 @@ describe('(Route) Counter', () => {
   it('Configuration should contain path `counter`', () => {
     expect(_route.path).to.equal('counter')
   })
-
 })

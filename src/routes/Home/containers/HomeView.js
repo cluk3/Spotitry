@@ -12,7 +12,6 @@ export const HomeView = ({
   searchArtistsHandler,
   goToArtist,
   isFetching,
-  pristine,
   showMoreArtists,
   total,
   next,
@@ -26,7 +25,6 @@ export const HomeView = ({
         <ArtistsList
           artists={artists}
           goToArtist={goToArtist}
-          pristine={pristine}
           showMoreHandler={showMoreArtists}
           next={next}
           isFetchingMore={isFetchingMore}
@@ -44,7 +42,6 @@ HomeView.propTypes = {
   goToArtist: React.PropTypes.func.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
   isFetchingMore: React.PropTypes.bool.isRequired,
-  pristine: React.PropTypes.bool.isRequired,
   showMoreArtists: React.PropTypes.func.isRequired,
   next: React.PropTypes.string,
   total: React.PropTypes.number

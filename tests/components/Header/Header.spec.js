@@ -1,30 +1,37 @@
 import React from 'react'
-import { Header } from 'components/Header/Header'
-import { IndexLink, Link } from 'react-router'
+import Header from 'components/Header'
 import { shallow } from 'enzyme'
+import classes from 'components/Header/Header.scss'
 
 describe('(Component) Header', () => {
   let _wrapper
 
   beforeEach(() => {
-    _wrapper = shallow(<Header/>)
+    _wrapper = shallow(<Header />)
   })
 
-  it('Renders a welcome message', () => {
-    const welcome = _wrapper.find('h1')
-    expect(welcome).to.exist
-    expect(welcome.text()).to.match(/React Redux Starter Kit/)
+  it('Should render as a <div> with CSSmodules class `header`.', () => {
+    expect(_wrapper.is('div')).to.be.true
+    expect(_wrapper.find('div').hasClass(classes.header)).to.be.true
   })
 
-  describe('Navigation links...', () => {
+  it('Should render exactly one Link.', () => {
+    expect(_wrapper.find('Link')).to.have.length(1)
+  })
 
-    it('Should render an IndexLink to Home route', () => {
-      expect(_wrapper.contains(<IndexLink to='/'/>)).to.equal.true
+  describe('Link element', () => {
+    let _Link
+    beforeEach(() => {
+      _Link = _wrapper.find('Link')
     })
-
-    it('Should render an Link to Counter route)', () => {
-      expect(_wrapper.contains(<Link to='/counter'/>)).to.equal.true
+    it('has CSSmodules class `title`', () => {
+      expect(_Link.hasClass(classes.title)).to.be.true
     })
-
+    it('has Spotitry text', () => {
+      expect(_Link).to.have.prop('children', 'Spotitry')
+    })
+    it('has prop `to` equal to `/`', () => {
+      expect(_Link).to.have.prop('to','/')
+    })
   })
 })

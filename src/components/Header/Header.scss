@@ -11,13 +11,12 @@
   line-height: 80px;
   padding-left: 24px;
   color: white;
-}
-
-.title:hover,
-.title:active,
-.title:visited,
-.title:link {
-  text-decoration: none;
-  color: white;
-  outline: 0;
+  &:hover,
+  &:active,
+  &:visited,
+  &:link {
+    text-decoration: none;
+    color: white;
+    outline: 0;
+  }
 }

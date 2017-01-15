@@ -8,12 +8,12 @@ import _debug from 'debug'
 import config from '../config'
 import webpackDevMiddleware from './middleware/webpack-dev'
 import webpackHMRMiddleware from './middleware/webpack-hmr'
-import router from './routes'
 import logger from 'koa-logger'
 
 const debug = _debug('app:server')
 const paths = config.utils_paths
 const app = new Koa()
+const koaServe = (resource) => convert(serve(resource))
 
 app.use(logger())
 
@@ -40,7 +40,7 @@ if (config.env === 'development') {
   // these files. This middleware doesn't need to be enabled outside
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
-  app.use(convert(serve(paths.client('static'))))
+  app.use(koaServe(paths.client('static')))
 } else {
   debug(
     'Server is being run outside of live development mode. This starter kit ' +
@@ -52,13 +52,12 @@ if (config.env === 'development') {
   // Serving ~/dist by default. Ideally these files should be served by
   // the web server and not the app server, but this helps to demo the
   // server in production.
-  app.use(convert(serve(paths.dist())))
+  app.use(koaServe(paths.dist()))
 }
 
 app.use(async (ctx, next) => {
   ctx.type = 'application/json'
   await next()
 })
-router(app)
 
 export default app

@@ -23,7 +23,7 @@ describe('(Layout) Core', () => {
   })
   it('has bootstrap class container', () => {
     const _div = _component.find('div').first()
-    expect(_div.hasClass('container')).to.be.true
+    expect(_div.hasClass('container-fluid')).to.be.true
   })
   it('should contain an Header component', () => {
     expect(_component.find('Header')).to.have.length(1)

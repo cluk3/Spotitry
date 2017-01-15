@@ -9,11 +9,12 @@
   border-radius: none;
   text-align: center;
   background: white;
+  &:focus {
+    border-bottom: 2px solid #93519a;
+  }
 }
 
-.searchInput:focus {
-  border-bottom: 2px solid #93519a;
-}
+
 
 .searchBar {
   margin: 0 auto;

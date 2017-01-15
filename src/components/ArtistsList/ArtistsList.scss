@@ -7,3 +7,12 @@
   border: none;
   outline: none;
 }
+
+.list {
+  max-height: '70vh';
+  overflow-y: 'auto';
+}
+
+.preview {
+  max-width: 95%;
+}
