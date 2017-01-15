@@ -1,7 +1,6 @@
 # Spotitry
 
-Built starting from [React Redux Starter Kit](https://github.com/davezuko/react-redux-starter-kit.git)
-
+Built with [React Redux Starter Kit](https://github.com/davezuko/react-redux-starter-kit.git)
 
 ## Table of Contents
 1. [Features](#features)
