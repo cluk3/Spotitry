@@ -9,6 +9,7 @@ import config from '../config'
 import webpackDevMiddleware from './middleware/webpack-dev'
 import webpackHMRMiddleware from './middleware/webpack-hmr'
 import logger from 'koa-logger'
+import setupRouter from './routes'
 
 const debug = _debug('app:server')
 const paths = config.utils_paths
@@ -16,6 +17,8 @@ const app = new Koa()
 const koaServe = (resource) => convert(serve(resource))
 
 app.use(logger())
+
+setupRouter(app)
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement isomorphic
