@@ -11,7 +11,7 @@ const getOptions = (opts) => Object.assign(
   opts
 )
 
-export const getSpotifyToken = () => fetch(`${__API_ENDPOINT__}/spotifyToken`, {
+export const getSpotifyToken = () => fetch('/spotifyToken', {
   headers: {
     'Accept': 'application/json'
   }
