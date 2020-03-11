@@ -1,5 +1,10 @@
 # Spotitry
 
+With [Spotitry](https://spotitry.herokuapp.com/) you search for a music artist and explore his whole discography!
+It is using Spotify API under the hood :)
+
+I created it in order to make practice with React, Redux, and React-Router!
+
 Built with [React Redux Starter Kit](https://github.com/davezuko/react-redux-starter-kit.git)
 
 ## Table of Contents
