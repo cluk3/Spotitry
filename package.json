@@ -1,11 +1,11 @@
 {
-  "name": "Spotitry",
+  "name": "spotitry",
   "version": "0.0.1",
   "description": "An app which uses Spotify API to make practice with React, Redux, and React-Router!",
   "main": "index.js",
   "engines": {
-    "node": ">=4.2.0",
-    "npm": "^3.0.0"
+    "node": ">=10.2.0",
+    "npm": "^6.0.0"
   },
   "scripts": {
     "clean": "rimraf dist",
