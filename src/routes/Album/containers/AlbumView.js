@@ -23,16 +23,16 @@ const Album = ({ album }) => {
   )
 }
 
-AlbumViewContainer.propTypes = {
+Album.propTypes = {
   album: React.PropTypes.object.isRequired
 }
 
 export class AlbumView extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     const { loadAlbum, routeParams, album } = this.props
     loadAlbum(routeParams.albumId, album)
   }
-  render () {
+  render() {
     const { album, routeParams } = this.props
     console.log(album)
     const loading = <Loading />
