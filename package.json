@@ -137,6 +137,8 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.12.2",
+    "webpack-hot-middleware": "^2.6.0",
     "yargs": "^4.0.0"
   },
   "devDependencies": {
@@ -169,9 +171,6 @@
     "redbox-react": "^1.2.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "supertest": "^1.2.0",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.6.0",
-    "why-did-you-update": "0.0.6"
+    "supertest": "^1.2.0"
   }
 }
