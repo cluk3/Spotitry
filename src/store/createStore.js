@@ -12,7 +12,7 @@ export default (initialState = {}, history) => {
 
   // Use DevTools chrome extension in development
   if (__DEBUG__) {
-    const devToolsExtension = window.devToolsExtension
+    const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
 
     if (typeof devToolsExtension === 'function') {
       middleware = compose(middleware, devToolsExtension())

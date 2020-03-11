@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './ArtistPreview.scss'
 import placeholder from 'static/placeholder.png'
+import PropTypes from 'prop-types'
 
 export const ArtistPreview = ({artist, goToArtist}) => {
   const artistClickHandler = () => {
@@ -23,8 +24,8 @@ export const ArtistPreview = ({artist, goToArtist}) => {
 }
 
 ArtistPreview.propTypes = {
-  artist: React.PropTypes.object.isRequired,
-  goToArtist: React.PropTypes.func.isRequired
+  artist: PropTypes.object.isRequired,
+  goToArtist: PropTypes.func.isRequired
 }
 
 export default ArtistPreview

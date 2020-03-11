@@ -1,7 +1,8 @@
 import React from 'react'
 import classes from './SearchArtistBar.scss'
+import PropTypes from 'prop-types'
 
-export const SearchArtistBar = ({searchArtistsHandler}) => {
+export const SearchArtistBar = ({ searchArtistsHandler }) => {
   const inputHandler = (ev) => searchArtistsHandler(ev.target.value)
   return (
     <div className={classes.searchBar}>
@@ -17,7 +18,7 @@ export const SearchArtistBar = ({searchArtistsHandler}) => {
 }
 
 SearchArtistBar.propTypes = {
-  searchArtistsHandler: React.PropTypes.func.isRequired
+  searchArtistsHandler: PropTypes.func.isRequired
 }
 
 export default SearchArtistBar

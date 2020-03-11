@@ -5,14 +5,15 @@ import { loadArtist } from '../modules/artist'
 import AlbumPreview from 'components/AlbumPreview'
 import Loading from 'components/Loading'
 import { push } from 'react-router-redux'
+import PropTypes from 'prop-types'
 
 export class ArtistView extends React.Component {
-  componentDidMount () {
-    const {loadArtist, routeParams, artist} = this.props
+  componentDidMount() {
+    const { loadArtist, routeParams, artist } = this.props
     loadArtist(routeParams.artistId, artist)
   }
-  render () {
-    const {artist, routeParams, goToAlbum} = this.props
+  render() {
+    const { artist, routeParams, goToAlbum } = this.props
     const artistView = (
       <div>
         <h1>{artist.name}</h1>
@@ -32,10 +33,10 @@ export class ArtistView extends React.Component {
 }
 
 ArtistView.propTypes = {
-  artist: React.PropTypes.object.isRequired,
-  routeParams: React.PropTypes.object.isRequired,
-  goToAlbum: React.PropTypes.func.isRequired,
-  loadArtist: React.PropTypes.func.isRequired
+  artist: PropTypes.object.isRequired,
+  routeParams: PropTypes.object.isRequired,
+  goToAlbum: PropTypes.func.isRequired,
+  loadArtist: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import ellipsis from 'static/ellipsis.svg'
 import classes from './Loading.scss'
+import PropTypes from 'prop-types'
 
 export const Loading = ({fullScreen}) => (
   <div className={fullScreen ? classes.full : ''}>
@@ -9,6 +10,6 @@ export const Loading = ({fullScreen}) => (
 )
 
 Loading.propTypes = {
-  fullScreen: React.PropTypes.bool
+  fullScreen: PropTypes.bool
 }
 export default Loading

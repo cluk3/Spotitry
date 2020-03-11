@@ -121,6 +121,7 @@
     "node-sass": "^4.12.0",
     "normalize.css": "^4.1.1",
     "postcss-loader": "^0.9.0",
+    "prop-types": "^15.7.2",
     "qs": "^6.7.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",

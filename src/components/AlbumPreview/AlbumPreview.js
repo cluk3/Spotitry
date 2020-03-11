@@ -1,25 +1,25 @@
 import React from 'react'
 import classes from './AlbumPreview.scss'
-import placeholder from 'static/placeholder.png'
+import AlbumImg from './AlbumImg'
+import PropTypes from 'prop-types'
 
-export const AlbumPreview = ({album, goToAlbum}) => {
+export const AlbumPreview = ({ album, goToAlbum }) => {
   const albumClickHandler = () => {
     goToAlbum(album.id)
   }
   return (
     <div className='col-xs-12 col-sm-6 col-md-4 center-block text-center'>
       <h2 className={classes.title}>{album.name}</h2>
-      <img src={album.imageUrl || placeholder} width='300' height='300'
-        className={classes.img + ' img-rounded'}
-        onClick={albumClickHandler}
+      <AlbumImg imageUrl={album.imageUrl}
+        albumClickHandler={albumClickHandler}
       />
     </div>
-    )
+  )
 }
 
 AlbumPreview.propTypes = {
-  album: React.PropTypes.object.isRequired,
-  goToAlbum: React.PropTypes.func.isRequired
+  album: PropTypes.object.isRequired,
+  goToAlbum: PropTypes.func.isRequired
 }
 
 export default AlbumPreview
