@@ -16,15 +16,15 @@ export const getSpotifyToken = () => fetch(`${__API_ENDPOINT__}/spotifyToken`, {
     'Accept': 'application/json'
   }
 }).then(res => res.json())
-.then(res => {
-  window.localStorage.setItem('spotify_token', res.access_token)
-})
+  .then(res => {
+    window.localStorage.setItem('spotify_token', res.access_token)
+  })
 
-export default function apiFetcher (options) {
+export default function apiFetcher(options) {
   return axios(getOptions(options)).then(res => res.data).catch(err => {
-    if (err.status === 401) {
+    if (err.response.status === 401) {
       return getSpotifyToken().then(() => axios(getOptions(options)))
-      .then(res => res.data)
+        .then(res => res.data)
     }
     return err
   })

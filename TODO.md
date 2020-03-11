@@ -1,0 +1,7 @@
+- migrate to create react app
+- migrate react 16.8
+- use hooks
+- use Styled components
+- use prettier
+- abort on route leave
+- add query param search

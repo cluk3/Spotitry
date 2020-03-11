@@ -3,21 +3,22 @@ import { artistsFromRes } from 'helper'
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const FETCH_ARTISTS = 'FETCH_ARTISTS'
-export const FETCH_MORE_ARTISTS = 'FETCH_MORE_ARTISTS'
-export const FETCH_ARTISTS_START = 'FETCH_ARTISTS_START'
-export const FETCH_MORE_ARTISTS_SUCCESS = 'FETCH_MORE_ARTISTS_SUCCESS'
-export const FETCH_ARTISTS_SUCCESS = 'FETCH_ARTISTS_SUCCESS'
-export const FETCH_ARTISTS_FAIL = 'FETCH_ARTISTS_FAIL'
+export const SEARCH_ARTISTS = 'SEARCH_ARTISTS'
+export const FETCH_MORE_ARTISTS_REQUESTED = 'FETCH_MORE_ARTISTS_REQUESTED'
+export const FETCH_MORE_ARTISTS_SUCCEEDED = 'FETCH_MORE_ARTISTS_SUCCEEDED'
+export const FETCH_ARTISTS_REQUESTED = 'FETCH_ARTISTS_REQUESTED'
+export const FETCH_ARTISTS_SUCCEEDED = 'FETCH_ARTISTS_SUCCEEDED'
+export const FETCH_ARTISTS_FAILED = 'FETCH_ARTISTS_FAILED'
+export const FETCH_ARTISTS_ABORTED = 'FETCH_ARTISTS_ABORTED'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function loadArtists (artistsResponse) {
+export function fetchArtistsSucceeded (artistsResponse) {
   const { next, total } = artistsResponse
   const artists = artistsFromRes(artistsResponse)
   return {
-    type: FETCH_ARTISTS_SUCCESS,
+    type: FETCH_ARTISTS_SUCCEEDED,
     payload: {
       artists,
       total,
@@ -26,11 +27,11 @@ export function loadArtists (artistsResponse) {
   }
 }
 
-export function loadMoreArtists (artistsResponse) {
+export function fetchMoreArtistsSucceeded (artistsResponse) {
   const { next } = artistsResponse
   const artists = artistsFromRes(artistsResponse)
   return {
-    type: FETCH_MORE_ARTISTS_SUCCESS,
+    type: FETCH_MORE_ARTISTS_SUCCEEDED,
     payload: {
       artists,
       next
@@ -40,41 +41,46 @@ export function loadMoreArtists (artistsResponse) {
 
 export function searchArtists (query) {
   return {
-    type: FETCH_ARTISTS,
+    type: SEARCH_ARTISTS,
     query
   }
 }
 
-export function showMoreArtists (nextUrl) {
+export function fetchMoreArtists (nextUrl) {
   return {
-    type: FETCH_MORE_ARTISTS,
+    type: FETCH_MORE_ARTISTS_REQUESTED,
     nextUrl
   }
-}
-
-export const actions = {
-  loadArtists
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [FETCH_ARTISTS_SUCCESS]: (state, action) => ({
+  [FETCH_ARTISTS_SUCCEEDED]: (state, action) => ({
     ...state,
     ...action.payload,
-    isFetching: false,
-    pristine: false
+    isFetching: false
   }),
-  [FETCH_MORE_ARTISTS_SUCCESS]: (state, action) => ({
+  [FETCH_MORE_ARTISTS_SUCCEEDED]: (state, action) => ({
     ...state,
     artists: state.artists.concat(action.payload.artists),
     next: action.payload.next,
     isFetchingMore: false
   }),
-  [FETCH_MORE_ARTISTS]: (state, action) => ({...state, isFetchingMore: true}),
-  [FETCH_ARTISTS_FAIL]: (state, action) => ({...state, isFetching: false, isFetchingMore: false}),
-  [FETCH_ARTISTS_START]: (state, action) => ({...state, isFetching: true})
+  [FETCH_MORE_ARTISTS_REQUESTED]: (state) => ({...state, isFetchingMore: true}),
+  [FETCH_ARTISTS_FAILED]: (state, action) => ({
+    ...state,
+    isFetching: false,
+    isFetchingMore: false,
+    error: action.payload.error
+  }),
+  [FETCH_ARTISTS_ABORTED]: (state) => ({
+    ...state,
+    isFetching: false,
+    isFetchingMore: false
+  }),
+  [FETCH_ARTISTS_REQUESTED]: (state) => ({...state, isFetching: true})
 }
 
 // ------------------------------------
@@ -83,8 +89,7 @@ const ACTION_HANDLERS = {
 const initialState = {
   isFetching: false,
   isFetchingMore: false,
-  artists: [],
-  pristine: true
+  artists: []
 }
 export default function artistsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

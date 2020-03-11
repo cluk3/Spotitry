@@ -3,14 +3,14 @@ import classes from './HomeView.scss'
 import SearchArtistBar from 'components/SearchArtistBar'
 import ArtistsList from 'components/ArtistsList'
 import { connect } from 'react-redux'
-import {searchArtists, showMoreArtists} from '../modules/artistsList'
+import {searchArtists, fetchMoreArtists} from '../modules/artistsList'
 import { push } from 'react-router-redux'
 import Loading from 'components/Loading'
 
 export const HomeView = ({
   artists,
   searchArtistsHandler,
-  goToArtist,
+  navigateToArtist,
   isFetching,
   showMoreArtists,
   total,
@@ -24,12 +24,12 @@ export const HomeView = ({
       <div className='center-block text-center'>
         <ArtistsList
           artists={artists}
-          goToArtist={goToArtist}
+          goToArtist={navigateToArtist}
           showMoreHandler={showMoreArtists}
           next={next}
           isFetchingMore={isFetchingMore}
         />
-      {artists.length ? (<span className={classes.total}>Total found: {total}</span>) : ''}
+      {artists.length && (<span className={classes.total}>Total found: {total}</span>)}
       </div>
     ) : <Loading fullScreen />
     }
@@ -39,7 +39,7 @@ export const HomeView = ({
 HomeView.propTypes = {
   artists: React.PropTypes.array.isRequired,
   searchArtistsHandler: React.PropTypes.func.isRequired,
-  goToArtist: React.PropTypes.func.isRequired,
+  navigateToArtist: React.PropTypes.func.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
   isFetchingMore: React.PropTypes.bool.isRequired,
   showMoreArtists: React.PropTypes.func.isRequired,
@@ -50,8 +50,8 @@ HomeView.propTypes = {
 const mapDispatchToProps = (dispatch) => {
   return {
     searchArtistsHandler: (query) => dispatch(searchArtists(query)),
-    goToArtist: (artistId) => dispatch(push(`/artist/${artistId}`)),
-    showMoreArtists: (nextUrl) => dispatch(showMoreArtists(nextUrl))
+    navigateToArtist: (artistId) => dispatch(push(`/artist/${artistId}`)),
+    showMoreArtists: (nextUrl) => dispatch(fetchMoreArtists(nextUrl))
   }
 }
 

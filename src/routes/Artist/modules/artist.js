@@ -52,7 +52,7 @@ export function loadArtist (artistIdFromRoute, prevArtist) {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [SET_ARTIST]: (state, action) => action.payload,
-  [SET_ALBUMS]: (state, action) => Object.assign({}, state, { albums: action.payload.albums })
+  [SET_ALBUMS]: (state, action) => ({ ...state, albums: action.payload.albums })
 }
 
 // ------------------------------------

@@ -1,17 +1,18 @@
 import { delay } from 'redux-saga'
 import { take, call, put, cancel, fork } from 'redux-saga/effects'
 import {
-  FETCH_ARTISTS,
-  FETCH_ARTISTS_START,
-  loadArtists,
-  FETCH_ARTISTS_FAIL
+  SEARCH_ARTISTS,
+  FETCH_ARTISTS_REQUESTED,
+  FETCH_ARTISTS_ABORTED,
+  FETCH_ARTISTS_FAILED,
+  fetchArtistsSucceeded
 } from 'routes/Home/modules/artistsList'
 import apiFetcher from 'helper/apiFetcher'
 
 export function * fetchArtists (action) {
   try {
     yield delay(400)
-    yield put({type: FETCH_ARTISTS_START})
+    yield put({type: FETCH_ARTISTS_REQUESTED})
     const opts = {
       url: 'search',
       params: {
@@ -21,23 +22,27 @@ export function * fetchArtists (action) {
       }
     }
     const {artists} = yield call(apiFetcher, opts)
-    yield put(loadArtists(artists))
-  } catch (e) {
-    console.log(e)
-    yield put({type: FETCH_ARTISTS_FAIL})
+    yield put(fetchArtistsSucceeded(artists))
+  } catch (error) {
+    console.error(error)
+    yield put({type: FETCH_ARTISTS_FAILED, payload: {
+      error
+    }})
   }
 }
 
 export default function * watchFetchArtists () {
   let task
   while (true) {
-    const action = yield take(FETCH_ARTISTS)
+    const action = yield take(SEARCH_ARTISTS)
     if (task) {
       yield cancel(task)
-      yield put({type: FETCH_ARTISTS_FAIL})
+      yield put({type: FETCH_ARTISTS_ABORTED})
     }
     if (action.query !== '') {
       task = yield fork(fetchArtists, action)
     }
   }
 }
+
+// TODO: abort when changing route
