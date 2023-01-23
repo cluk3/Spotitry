@@ -170,6 +170,6 @@
     "redbox-react": "^1.2.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "supertest": "^1.2.0"
+    "supertest": "^6.3.3"
   }
 }
